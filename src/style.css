@@ -159,17 +159,11 @@ h1 {
 .header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-2);
   padding-left: var(--space-1);
   padding-right: var(--space-1);
 }
 
-.header--grayscale {
-  background-color: black;
-  color: white;
-  filter: grayscale(100%);
-  transition: filter var(--transition-fast);
-}
 
 .header__subtitle {
   /* Subtitle wrapper styles */
@@ -180,7 +174,14 @@ h1 {
   font-weight: 400;
   text-align: right;
   line-height: 1.2;
-  color: var(--color-accent)
+  color: var(--color-accent);
+}
+
+.grayscale {
+  background-color: black;
+  color: white;
+  filter: grayscale(100%);
+  transition: filter var(--transition-fast);
 }
 
 .subtitle__large {

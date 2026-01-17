@@ -196,7 +196,9 @@ const animateSpecialImages = () => {
  */
 const initClickInteraction = () => {
   const lottieContainer = document.getElementById('lottie-container')
-  const header = document.querySelector('.header')
+  const header = document.querySelector('.header');
+  const h1 = document.querySelector('h1');
+  const subtitle = document.querySelector('.subtitle');
 
   lottieContainer.addEventListener('click', () => {
     if (!hasStarted) {
@@ -206,9 +208,9 @@ const initClickInteraction = () => {
       lottieContainer.classList.add('lottie-container--playing')
 
       // Remove grayscale from header
-      if (header) {
-        header.classList.remove('header--grayscale')
-      }
+      header.classList.remove('grayscale');
+      h1.classList.remove('grayscale');
+      subtitle.classList.remove('grayscale');
 
       // Hide all hoek images
       const hoekImages = document.querySelectorAll('.header-grid__hoek')
