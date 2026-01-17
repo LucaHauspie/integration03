@@ -58,6 +58,12 @@ lottieContainer.addEventListener('click', () => {
     document.querySelectorAll('.grayscale').forEach(el => {
       el.classList.remove('grayscale')
     })
+    // Hide all hoek images
+    document.querySelectorAll('.hoek').forEach(img => {
+      img.style.opacity = '0'
+      img.style.transition = 'opacity 0.5s ease'
+      setTimeout(() => img.style.display = 'none', 500)
+    })
     animation.play()
   }
 })
