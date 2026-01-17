@@ -3,6 +3,7 @@
   src: url('/PPNeueMontreal-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   src: url('/PPNeueMontreal-Book.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   src: url('/PPNeueMontreal-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
   src: url('/PPNeueMontreal-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -31,6 +35,7 @@
   src: url('/PPNeueMontreal-Italic.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -38,23 +43,58 @@
   src: url('/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
   font-weight: 600;
   font-style: italic;
+  font-display: swap;
 }
 
 :root {
-  font-family: 'PP Neue Montreal', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Typography */
+  --font-primary: 'PP Neue Montreal', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-size-1: 1.125rem;
+  --font-size-2: 1.875rem;
+  --font-size-3: 2.5rem;
+  --line-height-tight: 1.1;
+  --line-height-base: 1.5;
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 5rem;
+  --space-5: 8rem;
+
+  /* Colors */
+  --color-text: rgba(12, 12, 12, 0.87);
+  --color-bg: #ffffff;
+  --color-white: #ffffff;
+  --color-accent: rgba(255, 0, 0, 0.87);
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-base: 0.5s ease;
+
+  /* Sizes */
+  --lottie-width-min: 250px;
+  --lottie-width-max: 400px;
+  --lottie-height-max: 800px;
+  --hoek-width-min: 50px;
+
+  /* Base styles */
+  font-family: var(--font-primary);
+  line-height: var(--line-height-base);
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 0, 0, 0.87);
-  background-color: #ffffff;
-
+  color: var(--color-text);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
 
 body {
   background-image: url('./assets/int3background.svg');
@@ -65,103 +105,90 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 100vw;
-  line-height: 1.5;
+  line-height: var(--line-height-base);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   overflow-x: hidden;
-  font-family: 'PP Neue Montreal', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-primary);
 }
 
 h1 {
-  font-size: 2.5rem;
+  color: var(--color-accent);
+  font-size: var(--font-size-3);
   text-transform: uppercase;
   line-height: 2.2rem;
   font-style: normal;
   font-weight: 400;
 }
 
-.highlight-title {
+.h1__highlight {
   font-style: italic;
   font-weight: 600;
 }
 
 .lottie-container {
   width: 100%;
-  min-width: 250px;
-  max-width: 400px;
+  min-width: var(--lottie-width-min);
+  max-width: var(--lottie-width-max);
   height: auto;
-  max-height: 800px;
+  max-height: var(--lottie-height-max);
   opacity: 0;
   cursor: pointer;
-  transition: filter 0.3s ease;
+  justify-self: center;
+  transition: filter var(--transition-fast);
+  animation: float 3s ease-in-out infinite;
 }
 
-.grayscale {
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-.hoek {
-  width: 100%;
-  min-width: 50px;
-  height: auto;
+.lottie-container--playing {
+  animation: none;
 }
 
-header {
+.header {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  gap: var(--space-4);
+  padding-left: var(--space-1);
+  padding-right: var(--space-1);
 }
 
-.header-grid {
-  align-self: center;
-  max-width: 600px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  align-items: center;
-  justify-items: center;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.header-grid__column {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.grayscale {
-  filter: grayscale(100%);
+.header--grayscale {
   background-color: black;
-  transition: filter 0.3s ease;
   color: white;
+  filter: grayscale(100%);
+  transition: filter var(--transition-fast);
 }
 
+.header__subtitle {
+  /* Subtitle wrapper styles */
+}
 
 .subtitle {
-  font-size: 1.125rem;
+  font-size: var(--font-size-1);
   font-weight: 400;
   text-align: right;
   line-height: 1.2;
+  color: var(--color-accent)
 }
 
-.subtitle--large {
+.subtitle__large {
   text-transform: uppercase;
-  font-size: 1.875rem;
+  font-size: var(--font-size-2);
   font-weight: 500;
   text-align: right;
 }
-
-
-
-
-
 
 
 .container {
@@ -195,4 +222,100 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between
+}
+
+/* Walt images - randomly positioned */
+.walt-image {
+  position: absolute;
+  max-width: 80px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+/* Special images with animations */
+.special-image {
+  position: absolute;
+  max-width: 80px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+/* Asianletter - subtle swing rotation */
+.special-image--swing {
+  animation: swing 2s ease-in-out infinite;
+}
+
+@keyframes swing {
+
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+/* Boom - scale pulse */
+.special-image--pulse {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Radioactive - full rotation */
+.special-image--spin {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .special-image--swing,
+  .special-image--pulse,
+  .special-image--spin {
+    animation: none;
+  }
+}
+
+.start {
+  margin: 1rem;
+}
+
+.start__intro__text {
+  font-size: 2rem;
+}
+
+.highlight {
+  color: var(--color-accent)
 }

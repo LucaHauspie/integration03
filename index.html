@@ -5,37 +5,33 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="./src/style.css" as="style" />
+  <link rel="preload" href="/PPNeueMontreal-Book.otf" as="font" type="font/otf" crossorigin />
   <link rel="stylesheet" href="./src/style.css" />
   <title>integration03</title>
-  <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
-  <header class="grayscale">
-    <h1>too <span class="highlight-title">wild</span> <br> to be contained</h1>
-    <div class="header-grid">
-      <div class="header-grid__column">
-        <img class="hoek hoek-1" src="./src/assets/int3hoek1.svg" alt="hoek 1">
-        <img class="hoek hoek-3" src="./src/assets/int3hoek3.svg" alt="hoek 3">
-      </div>
-      <div>
-        <div id="lottie-container" class="lottie-container"></div>
-      </div>
-      <div class="header-grid__column">
-        <img class="hoek hoek-2" src="./src/assets/int3hoek2.svg" alt="hoek 2">
-        <img class="hoek hoek-4" src="./src/assets/int3hoek4.svg" alt="hoek 4">
-      </div>
-    </div>
+  <header class="header header--grayscale">
+    <h1>too <span class="h1__highlight">wild</span> <br> to be contained</h1>
+    <div id="lottie-container" class="lottie-container"></div>
     <div class="header__subtitle">
       <p class="subtitle">
         What happened to Walter <br> Vanbeirendonck’s most iconic brand <br>
-        <span class="subtitle--large">wild & lethal trash</span>
+        <span class="subtitle__large">wild & lethal trash</span>
       </p>
     </div>
   </header>
-
-
-
+  <section class="start">
+    <p class="start__intro__text">Founded in 1993 by Belgian designer Walter Van Beirendonck, was
+      <span class="highlight">not a conventional fashion label</span> but an experimental platform. Rather than
+      following trends,
+      it used fashion to confront themes of <span class="highlight">power</span>, fear,<span
+        class="highlight">sexuality</span>, violence,
+      and <span class="highlight">identity.</span>
+    </p>
+  </section>
+  <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>
