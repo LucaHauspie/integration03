@@ -96,6 +96,18 @@ p {
   color: black;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 body {
   background-image: url('./assets/int3background.svg');
   background-size: cover;
@@ -129,6 +141,9 @@ h1 {
 
 .lottie-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: var(--lottie-width-min);
   max-width: var(--lottie-width-max);
   height: auto;
@@ -138,7 +153,14 @@ h1 {
   justify-self: center;
   transition: filter var(--transition-fast);
   animation: float 3s ease-in-out infinite;
+  margin-bottom: 4rem;
 }
+
+.lottie-container__img {
+  margin-bottom: -4rem;
+}
+
+
 
 @keyframes float {
 
@@ -260,11 +282,11 @@ h1 {
 
   0%,
   100% {
-    transform: rotate(-15deg);
+    transform: rotate(0deg);
   }
 
   50% {
-    transform: rotate(15deg);
+    transform: rotate(30deg);
   }
 }
 
@@ -319,4 +341,20 @@ h1 {
 
 .highlight {
   color: var(--color-accent)
+}
+
+.asian {
+  rotate: -15deg;
+}
+
+.asian:hover {
+  animation: swing 1s ease-in-out infinite;
+}
+
+.radioactive {
+  width: 70px;
+}
+
+.radioactive:hover {
+  animation: spin 1s linear infinite;
 }
