@@ -199,6 +199,8 @@ const initClickInteraction = () => {
   const header = document.querySelector('.header');
   const h1 = document.querySelector('h1');
   const subtitle = document.querySelector('.subtitle');
+  const text = document.querySelector('.lottie-container__text');
+  const extra = document.querySelector('.start');
 
   lottieContainer.addEventListener('click', () => {
     if (!hasStarted) {
@@ -206,6 +208,8 @@ const initClickInteraction = () => {
 
       // Remove floating animation
       lottieContainer.classList.add('lottie-container--playing')
+      text.classList.add('visually-hidden');
+      extra.classList.remove('visually-hidden');
 
       // Remove grayscale from header
       header.classList.remove('grayscale');
