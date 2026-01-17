@@ -1,24 +1,49 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import lottie from 'lottie-web'
+import animationData from './assets/int3.json'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+gsap.registerPlugin(ScrollTrigger)
 
-setupCounter(document.querySelector('#counter'))
+// Load Lottie animation
+const animation = lottie.loadAnimation({
+  container: document.getElementById('lottie-container'),
+  renderer: 'svg',
+  loop: false,
+  autoplay: false,
+  animationData: animationData
+})
+
+// Fade in the Lottie container
+gsap.to('.lottie-container', {
+  opacity: 1,
+  duration: 0.5
+})
+
+// ScrollTrigger to control Lottie animation playback
+gsap.to(animation, {
+  frame: animation.totalFrames - 1,
+  scrollTrigger: {
+    trigger: 'body',
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1,
+    markers: false,
+    onUpdate: (self) => {
+      animation.goToAndStop(self.progress * (animation.totalFrames - 1), true)
+    }
+  }
+})
+
+// ScrollTrigger animation for container width
+gsap.to('.container', {
+  width: '50vw',
+  scrollTrigger: {
+    trigger: 'body',
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1,
+    markers: false
+  }
+})
