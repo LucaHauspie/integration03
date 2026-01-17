@@ -2,9 +2,11 @@ import './style.css'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import lottie from 'lottie-web'
-import animationData from './assets/int3.json'
+import animationData from './assets/headeranimation.json'
 
 gsap.registerPlugin(ScrollTrigger)
+
+let hasStarted = false
 
 // Load Lottie animation
 const animation = lottie.loadAnimation({
@@ -15,35 +17,53 @@ const animation = lottie.loadAnimation({
   animationData: animationData
 })
 
+// Play only the "loop" marker segment
+animation.addEventListener('DOMLoaded', () => {
+  const markers = animation.markers
+  const loopMarker = markers?.find(marker => marker.payload?.name === 'loop' || marker.cm === 'loop')
+
+  if (loopMarker) {
+    const loopStart = loopMarker.tm
+    const loopEnd = animation.totalFrames - 1
+
+    // Wait for first complete, then set up the loop
+    let hasPlayedOnce = false
+
+    animation.addEventListener('enterFrame', (e) => {
+      if (!hasPlayedOnce && e.currentTime >= loopStart) {
+        hasPlayedOnce = true
+        animation.loop = false
+      }
+    })
+
+    animation.addEventListener('complete', () => {
+      if (hasPlayedOnce) {
+        animation.playSegments([loopStart, loopEnd], true)
+      }
+    })
+  } else {
+    // Fallback: just loop the whole animation
+    animation.loop = true
+  }
+})
+
+// Click to play
+const lottieContainer = document.getElementById('lottie-container')
+lottieContainer.classList.add('grayscale')
+
+lottieContainer.addEventListener('click', () => {
+  if (!hasStarted) {
+    hasStarted = true
+    // Remove grayscale from all elements
+    document.querySelectorAll('.grayscale').forEach(el => {
+      el.classList.remove('grayscale')
+    })
+    animation.play()
+  }
+})
+
 // Fade in the Lottie container
 gsap.to('.lottie-container', {
   opacity: 1,
   duration: 0.5
-})
-
-// ScrollTrigger to control Lottie animation playback
-gsap.to(animation, {
-  frame: animation.totalFrames - 1,
-  scrollTrigger: {
-    trigger: 'body',
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: 1,
-    markers: false,
-    onUpdate: (self) => {
-      animation.goToAndStop(self.progress * (animation.totalFrames - 1), true)
-    }
-  }
-})
-
-// ScrollTrigger animation for container width
-gsap.to('.container', {
-  width: '50vw',
-  scrollTrigger: {
-    trigger: 'body',
-    start: 'top top',
-    end: 'bottom bottom',
-    scrub: 1,
-    markers: false
-  }
 })

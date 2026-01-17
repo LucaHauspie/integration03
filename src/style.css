@@ -1,10 +1,52 @@
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'PP Neue Montreal', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 0, 0, 0.87);
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -13,94 +55,114 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
 
 body {
-  margin: 0;
+  background-image: url('./assets/int3background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100vw;
+  line-height: 1.5;
   display: flex;
-  justify-content: flex-end;
-  min-width: 320px;
+  flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'PP Neue Montreal', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  line-height: 2.2rem;
+  font-style: normal;
+  font-weight: 400;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.highlight-title {
+  font-style: italic;
+  font-weight: 600;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.lottie-container {
+  width: 100%;
+  min-width: 250px;
+  max-width: 400px;
+  height: auto;
+  max-height: 800px;
+  opacity: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: filter 0.3s ease;
 }
 
-button:hover {
-  border-color: #646cff;
+.grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.hoek {
+  width: 100%;
+  min-width: 50px;
+  height: auto;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #ffffff;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
+
+.header-grid {
+  align-self: center;
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.header-grid__column {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+  background-color: black;
+  transition: filter 0.3s ease;
+  color: white;
+}
+
+
+.subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.subtitle--large {
+  text-transform: uppercase;
+  font-size: 1.875rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+
+
+
+
+
 
 .container {
   display: grid;
@@ -126,15 +188,6 @@ button:focus-visible {
   color: red;
 }
 
-.hoek-2 {
-  grid-column: 3 / span 1;
-  grid-row: 1 / span 2;
-}
-
-.hoek-3 {
-  grid-column: 1;
-  align-self: end;
-}
 
 .container__right,
 .container__left {
@@ -142,11 +195,4 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: space-between
-}
-
-.hoek-4 {
-  grid-row: 1;
-  grid-column: 3;
-  justify-content: end;
-  align-self: end;
 }
