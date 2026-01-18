@@ -368,3 +368,91 @@ h2 {
   line-height: 1;
   text-align: right;
 }
+
+.start__collections {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: clamp(4rem, 5vw + 1rem, 8rem);
+  width: 100%;
+  max-width: 1400px;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.collection {
+  width: 100%;
+  max-width: 390px;
+}
+
+.coll-1 {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 500px;
+  max-height: 700px;
+  transform-origin: center center;
+}
+
+/* Grote afbeelding - gecentreerd */
+.big-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+  max-width: 312px;
+  /* 80% van 390px */
+  z-index: 2;
+}
+
+/* Hoek icoon - linksboven */
+.corner-1 {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: clamp(40px, 10vh, 80px);
+  width: auto;
+  z-index: 3;
+}
+
+/* Boom/accent icoon - rechtsboven */
+.boom-1 {
+  position: absolute;
+  width: 30%;
+  max-width: 117px;
+  /* 30% van 390px */
+  height: auto;
+  left: 70%;
+  top: 5%;
+  z-index: 3;
+}
+
+/* Kleine afbeelding - rechtsonder */
+.small-1 {
+  position: absolute;
+  width: 30%;
+  max-width: 117px;
+  /* 30% van 390px */
+  height: auto;
+  left: 68%;
+  top: 60%;
+  z-index: 3;
+}
+
+/* Tablet: 2 kolommen */
+@media (min-width: 48em) {
+  .start__collections {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 4vw + 1rem, 5rem);
+  }
+}
+
+/* Desktop: 3 kolommen naast elkaar */
+@media (min-width: 64em) {
+  .start__collections {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2rem, 3vw + 0.5rem, 4rem);
+  }
+}
