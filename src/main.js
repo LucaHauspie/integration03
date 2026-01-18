@@ -240,6 +240,108 @@ const initClickInteraction = () => {
 }
 
 /**
+ * Initialize collection 1 Lottie animation
+ */
+const initColl1Animation = async () => {
+  const container = document.getElementById('coll1-animation')
+  if (!container) return
+
+  const [{ default: lottie }, { default: animationData }] = await Promise.all([
+    import('lottie-web'),
+    import('./assets/coll1.json')
+  ])
+
+  const coll1Animation = lottie.loadAnimation({
+    container: container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    animationData: animationData
+  })
+
+  if (prefersReducedMotion) {
+    coll1Animation.setSpeed(0.5)
+  }
+
+  // Play on hover, pause on leave
+  container.addEventListener('mouseenter', () => {
+    coll1Animation.play()
+  })
+
+  container.addEventListener('mouseleave', () => {
+    coll1Animation.pause()
+  })
+}
+
+/**
+ * Initialize collection 2 Lottie animation
+ */
+const initColl2Animation = async () => {
+  const container = document.getElementById('coll2-animation')
+  if (!container) return
+
+  const [{ default: lottie }, { default: animationData }] = await Promise.all([
+    import('lottie-web'),
+    import('./assets/coll2.json')
+  ])
+
+  const coll2Animation = lottie.loadAnimation({
+    container: container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    animationData: animationData
+  })
+
+  if (prefersReducedMotion) {
+    coll2Animation.setSpeed(0.5)
+  }
+
+  // Play on hover, pause on leave
+  container.addEventListener('mouseenter', () => {
+    coll2Animation.play()
+  })
+
+  container.addEventListener('mouseleave', () => {
+    coll2Animation.pause()
+  })
+}
+
+/**
+ * Initialize collection 3 Lottie animation
+ */
+const initColl3Animation = async () => {
+  const container = document.getElementById('coll3-animation')
+  if (!container) return
+
+  const [{ default: lottie }, { default: animationData }] = await Promise.all([
+    import('lottie-web'),
+    import('./assets/coll3.json')
+  ])
+
+  const coll3Animation = lottie.loadAnimation({
+    container: container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    animationData: animationData
+  })
+
+  if (prefersReducedMotion) {
+    coll3Animation.setSpeed(0.5)
+  }
+
+  // Play on hover, pause on leave
+  container.addEventListener('mouseenter', () => {
+    coll3Animation.play()
+  })
+
+  container.addEventListener('mouseleave', () => {
+    coll3Animation.pause()
+  })
+}
+
+/**
  * Fade in the Lottie container
  */
 const initFadeInAnimation = () => {
@@ -256,6 +358,9 @@ const init = () => {
   initLottieAnimation()
   initClickInteraction()
   initFadeInAnimation()
+  initColl1Animation()
+  initColl2Animation()
+  initColl3Animation()
 }
 
 // Start initialization
